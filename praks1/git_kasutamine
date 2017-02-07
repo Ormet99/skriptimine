@@ -24,3 +24,14 @@ git remote add skriptimine https://github.com/ormet99/skriptimine.git
 
 b)gite remote kontroll
 git remote -v
+
+põhikasutamine:
+
+a)pane fail jälgimisele:
+git add failinimi
+
+b)lisa kirjelduse muudatuse kohta
+git commit -m "remote seadistus"
+
+c) lisa kaugrepositooriumi
+git push -uf skriptimine master
