@@ -1,0 +1,12 @@
+#!/bin/bash
+#
+kuupaev=$(date +%d.%m.%y)
+for nimi in $(awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd)
+do
+if [ -f /backup/$nimi.$kuupaev.tar.bz ]; then
+	echo "Kasutajal $nimi on täna juba backup tehtud"
+else
+	tar -cvjSf /backup/$nimi.$kuupaev.tar.bz2 /home/$nimi
+	echo "Kasutajal $nimi on backup tehtud"
+fi
+done
