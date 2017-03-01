@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Sisesta kasutajanimi"
+read kasutaja
+#
+kuupaev=$(date +%d.%m.%y)
+#echo $kuupaev
+tar -cvjSf /backup/$kasutaja.$kuupaev.tar.bz2 /home/$kasutaja
