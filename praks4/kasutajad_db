@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+for nimi in $(awk -F'[/:]' '{if ($3 >= 1000 && $3 != 65534) print $1}' /etc/passwd)
+do
+	if [ -f /home/$nimi/.my.cnf ]; then
+		echo "Kasutajal $nimi on .my.cnf fail olemas"
+	else
+	andmebaas=$nimi'_andmebaas'
+	parrol=$(openssl rand -hex 8)
+	mycnf=/home/$nimi/.my.cnf
+		mysql --user=root --password=qwerty -e "create user '$nimi' identified by '$parool'; create database $andmebaas; use $andmebaas; grant all privileges on $andmebaas.* to $nimi;"
+		echo "[client]\nuser=$nimi\npassword=$parool" > $mycnf
+		chmod 644 $mycnf
+fi
+done
