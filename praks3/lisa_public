@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+kasutajanimi=$1
+	mkdir /home/$kasutajanimi/public/
+	chmod 777 /home/$kasutajanimi/public
