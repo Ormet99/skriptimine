@@ -1,0 +1,18 @@
+#!/bin/bash
+kasutaja=$1
+dir=/home/$kasutaja/public/
+	if [ -d $dir ]; then
+		perm=$(stat -c %a $dir)
+		echo "Kaust on olemas"
+	else
+	sh ./lisa_public $kasutaja
+	echo "Kausta pole olemas"
+	echo "Loodud kasutajale $kasutaja oma public kaust"
+	exit
+fi
+	if [ $perm = "777" ]; then
+	echo "Õigused on paigas"
+	else
+	chmod 777 /home/$kasutaja/public/
+	echo "Kasutaja õigused muudetud õigeks"
+fi
